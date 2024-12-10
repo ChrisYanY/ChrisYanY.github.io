@@ -6,9 +6,10 @@ author:
 # The `>` after `description:` means to ignore line-breaks until next key.
 # If you want to omit the line-break after the end of text, use `>-` instead.
 description: >
-  Welcome to my blog! I'm a software engineer with a passion for building things.
-  I'm currently working on a project that involves building a web application
-  that allows users to track their daily habits.
+  Welcome to my blog! I'm a machine learning engineer with a passion for building things.
+  I'm creating this blog to randomly share my thoughts, ideas and what I have learned recently.
+  I tried to be casual and share not only technical but my lifetime values in this blog and I hope
+  you can find some interesting thoughts and our lives valuable. 
 
 # Build settings
 
