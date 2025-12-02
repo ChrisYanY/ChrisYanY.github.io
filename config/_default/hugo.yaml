@@ -4,9 +4,16 @@
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 # Website name (set in params.yaml under hugoblox.branding.name)
-title: ''
+title: "Yan Yan - Engineering Manager"
 # Website URL
-baseURL: 'https://example.com/'
+baseURL: "https://HumbleReader.github.io/"
+copyright: "© 2025 Yan Yan"
+
+# 启用 Wowchemy 模块
+module:
+  imports:
+    - path: github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy-plugin-reveal
+    - path: github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy/v5
 
 ############################
 ## LANGUAGE
