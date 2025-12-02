@@ -30,47 +30,36 @@ organizations:
 bio: My research interests include machine learning, active learning, and computer vision.
 
 # Interests to show in About widget
-# Interests to show in About widget
-# interests:
-#   - name: Machine Learning
-#     icon: brain
-#     icon_pack: fas
-#   - name: Computer Vision
-#     icon: eye
-#     icon_pack: fas
-#   - name: Active Learning
-#     icon: chart-line
-#     icon_pack: fas
-#   - name: Recommendation Systems
-#     icon: thumbs-up
-#     icon_pack: fas
+interests:
+  - Machine Learning
+  - Computer Vision
+  - Active Learning
+  - Recommendation Systems
 
 # Education to show in About widget
 education:
-  courses:
-    - course: PhD in Computer Science (Example)
-      institution: Northeastern University
-      year: 2014
-      icon: graduation-cap
-      icon_pack: fas
-    - course: MS in Computer Science
-      institution: Example University
-      year: 2010
-      icon: graduation-cap
-      icon_pack: fas
+  - area: PhD in Computer Science
+    institution: Northeastern University
+    date_start: '2010-09-01'
+    date_end: '2014-06-01'
+    icon: graduation-cap
+  - area: MS in Computer Science
+    institution: Example University
+    date_start: '2008-09-01'
+    date_end: '2010-06-01'
+    icon: graduation-cap
 
-# Experience to show in Experience widget
-experience:
-  - title: Engineering Manager
-    company: Meta
+# Work experience
+work:
+  - position: Engineering Manager - Machine Learning
+    company_name: Meta (Instagram Reels)
     company_url: https://about.instagram.com/
     location: Menlo Park, CA
     date_start: '2022-01-01'
     date_end: ''
-    description: |
+    summary: |
       Leading Machine Learning efforts for Instagram Reels.
     icon: instagram
-    icon_pack: fab
 
 # Social/Academic Networking
 # For available icons see: https://wowchemy.com/docs/getting-started/page-builder/#icons
