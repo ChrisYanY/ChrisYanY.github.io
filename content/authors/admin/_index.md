@@ -30,11 +30,20 @@ organizations:
 bio: My research interests include machine learning, active learning, and computer vision.
 
 # Interests to show in About widget
+# Interests to show in About widget
 interests:
-  - Machine Learning
-  - Computer Vision
-  - Active Learning
-  - Recommendation Systems
+  - name: Machine Learning
+    icon: brain
+    icon_pack: fas
+  - name: Computer Vision
+    icon: eye
+    icon_pack: fas
+  - name: Active Learning
+    icon: chart-line
+    icon_pack: fas
+  - name: Recommendation Systems
+    icon: thumbs-up
+    icon_pack: fas
 
 # Education to show in About widget
 education:
