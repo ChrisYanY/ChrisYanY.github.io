@@ -42,12 +42,12 @@ education:
     institution: Northeastern University
     date_start: '2010-09-01'
     date_end: '2014-06-01'
-    icon: graduation-cap
+    icon: academic-cap
   - area: MS in Computer Science
     institution: Example University
     date_start: '2008-09-01'
     date_end: '2010-06-01'
-    icon: graduation-cap
+    icon: academic-cap
 
 # Work experience
 work:
@@ -59,7 +59,7 @@ work:
     date_end: ''
     summary: |
       Leading Machine Learning efforts for Instagram Reels.
-    icon: instagram
+    icon: briefcase
 
 # Social/Academic Networking
 # For available icons see: https://wowchemy.com/docs/getting-started/page-builder/#icons
