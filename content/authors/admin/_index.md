@@ -23,6 +23,8 @@ role: Engineering Manager - Machine Learning
 organizations:
   - name: Meta (Instagram Reels)
     url: https://about.instagram.com/
+    icon: instagram
+    icon_pack: fab
 
 # Short bio (displayed in user profile at end of posts)
 bio: My research interests include machine learning, active learning, and computer vision.
@@ -40,9 +42,26 @@ education:
     - course: PhD in Computer Science (Example)
       institution: Northeastern University
       year: 2014
+      icon: graduation-cap
+      icon_pack: fas
     - course: MS in Computer Science
       institution: Example University
       year: 2010
+      icon: graduation-cap
+      icon_pack: fas
+
+# Experience to show in Experience widget
+experience:
+  - title: Engineering Manager
+    company: Meta
+    company_url: https://about.instagram.com/
+    location: Menlo Park, CA
+    date_start: '2022-01-01'
+    date_end: ''
+    description: |
+      Leading Machine Learning efforts for Instagram Reels.
+    icon: instagram
+    icon_pack: fab
 
 # Social/Academic Networking
 # For available icons see: https://wowchemy.com/docs/getting-started/page-builder/#icons
