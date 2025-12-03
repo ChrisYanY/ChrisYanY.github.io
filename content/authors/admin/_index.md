@@ -39,12 +39,12 @@ interests:
 
 # Education to show in About widget
 education:
-  - area: PhD in Computer Science
+  - area: PhD in Electrical and Computer Engineering
     institution: Northeastern University
     date_start: '2006-09-01'
     date_end: '2012-06-01'
     icon: academic-cap
-  - area: BS in Electronic and Computer Engineering
+  - area: BS in Electrical and Computer Engineering
     institution: Tsinghua University
     date_start: '2002-09-01'
     date_end: '2006-06-01'
@@ -56,7 +56,7 @@ work:
     company_name: Meta (Instagram Reels)
     company_url: https://about.instagram.com/
     location: Menlo Park, CA
-    date_start: '2022-01-01'
+    date_start: '2025-03-01'
     date_end: ''
     summary: |
       Leading Machine Learning efforts for Instagram Reels.
@@ -66,7 +66,7 @@ work:
     company_url: https://www.tiktok.com/
     location: San Jose, CA
     date_start: '2021-09-01'
-    date_end: '2022-01-01'
+    date_end: '2025-03-01'
     summary: |
       *   **Shop-tab Recommendation Delivery Flow**: Spearheaded the backend delivery team to scale shop-tab recommendation ads, driving daily revenue from 0 to **$1.4M** globally. Achieved over 10% revenue take rate in SEA and US.
       *   **Catalog Listing Ads**: Directed the development of open-loop catalog list ads in TikTok feeds, boosting user interaction and achieving a revenue run rate of ~$50K USD.
