@@ -41,13 +41,13 @@ interests:
 education:
   - area: PhD in Computer Science
     institution: Northeastern University
-    date_start: '2010-09-01'
-    date_end: '2014-06-01'
+    date_start: '2006-09-01'
+    date_end: '2012-06-01'
     icon: academic-cap
-  - area: MS in Computer Science
-    institution: Example University
-    date_start: '2008-09-01'
-    date_end: '2010-06-01'
+  - area: BS in Electronic and Computer Engineering
+    institution: Tsinghua University
+    date_start: '2002-09-01'
+    date_end: '2006-06-01'
     icon: academic-cap
 
 # Work experience
