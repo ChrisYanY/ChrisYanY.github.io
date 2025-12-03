@@ -8,5 +8,7 @@ authors:
 date: "2011-01-01"
 publication: "Proceedings of the 28th international conference on machine learning (ICML)"
 featured: true
-url_pdf: "yan-ICML2011.pdf"
+links:
+  - type: pdf
+    url: yan-ICML2011.pdf
 ---

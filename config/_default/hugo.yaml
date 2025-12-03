@@ -6,7 +6,7 @@
 # Website name (set in params.yaml under hugoblox.branding.name)
 title: "Yan Yan - Engineering Manager"
 # Website URL
-baseURL: "https://HumbleReader.github.io/"
+baseURL: "https://chrisyany.github.io/"
 copyright: "© 2025 Yan Yan"
 
 
