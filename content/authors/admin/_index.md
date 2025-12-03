@@ -33,6 +33,9 @@ bio: My focus areas include online advertising modeling, ads recommendation, lar
 interests:
   - Online Advertising
   - Recommendation Systems
+  - Generative Retrieval and Recommendation
+  - LLM and Content Understanding
+  - Content Cold Start and User Growth
   - Large Scale Ranking
   - Natural Language Processing
   - Crowd-sourcing
