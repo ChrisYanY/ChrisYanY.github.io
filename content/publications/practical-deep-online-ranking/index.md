@@ -15,6 +15,6 @@ links:
     url: dors-ecml.pdf
 ---
 
-{{< icon name=">" >}} **Paper Preview:**
+{{< icon name="eye" >}} **Paper Preview:**
 
 <embed src="dors-ecml.pdf" width="100%" height="800px" type="application/pdf" />
