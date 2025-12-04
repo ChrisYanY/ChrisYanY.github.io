@@ -13,6 +13,6 @@ links:
     url: yan-ICML2011.pdf
 ---
 
-{{< icon name="Δ" >}} **Paper Preview:**
+{{< icon name=">" >}} **Paper Preview:**
 
 <embed src="yan-ICML2011.pdf" width="100%" height="800px" type="application/pdf" />
