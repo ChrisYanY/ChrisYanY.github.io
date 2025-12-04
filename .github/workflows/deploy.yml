@@ -86,7 +86,7 @@ jobs:
         HUGO_ENVIRONMENT: production
       run: |
         echo "Hugo Cache Dir: $(hugo config | grep cachedir)"
-        hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        hugo --minify --baseURL "https://chrisyany.github.io/"
 
     - name: Generate Pagefind search index (if applicable)
       run: |
