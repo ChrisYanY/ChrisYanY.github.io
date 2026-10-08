@@ -1,0 +1,30 @@
+{{ define "main" }}
+<header class="post-head wrap">
+  <div class="inner">
+    <div class="crumbs">
+      <a href="{{ "" | relLangURL }}">← {{ i18n "backHome" }}</a>
+      <span class="label">{{ .Params.label }}</span>
+    </div>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.summary }}<p class="dek">{{ . }}</p>{{ end }}
+    <div class="byline">
+      <span>{{ .Date | time.Format ":date_long" }}</span>
+      <span>{{ .ReadingTime }} {{ i18n "minRead" }}</span>
+      {{- range .Translations }}<a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}">{{ i18n "readInOther" }}</a>{{ end }}
+    </div>
+  </div>
+</header>
+<div class="wrap post-layout">
+  <article class="prose">
+    {{ .Content }}
+    {{- with .Params.tags }}<div class="tags">{{ range . }}<span>{{ . }}</span>{{ end }}</div>{{ end }}
+    <div class="post-foot">
+      <a href="{{ "" | relLangURL }}#writing">← {{ i18n "allWriting" }}</a>
+      {{- range .Translations }}<a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}">{{ i18n "readInOther" }} →</a>{{ end }}
+    </div>
+  </article>
+  {{- if gt (len .TableOfContents) 40 }}
+  <aside class="toc" aria-label="{{ i18n "contents" }}"><span class="label">{{ i18n "contents" }}</span>{{ .TableOfContents }}</aside>
+  {{- end }}
+</div>
+{{ end }}

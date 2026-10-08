@@ -1,58 +1,65 @@
-# Configuration of Hugo
-# Guide: https://docs.hugoblox.com/tutorial/
-# Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
-# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
-
-# Website name (set in params.yaml under hugoblox.branding.name)
-title: "Yan Yan - Engineering Manager"
-# Website URL
 baseURL: "https://chrisyany.github.io/"
-copyright: "© 2025 Yan Yan"
-
-
-
-############################
-## LANGUAGE
-############################
+title: "Yan Yan"
+copyright: "© 2026 Yan Yan"
+enableRobotsTXT: true
+enableGitInfo: false
+summaryLength: 40
 
 defaultContentLanguage: en
-hasCJKLanguage: false
 defaultContentLanguageInSubdir: false
-removePathAccents: true
 
-############################
-## ADVANCED
-############################
+languages:
+  en:
+    languageName: "EN"
+    languageCode: en-US
+    weight: 1
+    params:
+      description: "Notes on recommender systems, generative retrieval, and LLMs by Yan Yan."
+  zh:
+    languageName: "中文"
+    title: "严严"
+    languageCode: zh-CN
+    weight: 2
+    hasCJKLanguage: true
+    params:
+      description: "严严关于推荐系统、生成式召回与大模型的技术笔记。"
 
-build:
-  writeStats: true
-enableGitInfo: false
-summaryLength: 30
-pagination:
-  pagerSize: 10
-enableEmoji: true
-enableRobotsTXT: true
-footnotereturnlinkcontents: <sup>^</sup>
-ignoreFiles: [".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
-disableAliases: true
-outputs:
-  home: [HTML, RSS, headers, redirects, backlinks]
-  section: [HTML, RSS]
-imaging:
-  resampleFilter: lanczos
-  quality: 90
-  anchor: smart
-  hint: picture
-timeout: 600000
+params:
+  author: "Yan Yan"
+  cv: "uploads/resume-yan-eng-2024.pdf"
+  social:
+    linkedin: "https://www.linkedin.com/in/chrisyany"
+    scholar: "https://scholar.google.com/citations?user=rmMWS_kAAAAJ"
+    github: "https://github.com/ChrisYanY"
+
 taxonomies:
-  author: authors
   tag: tags
-  publication_type: publication_types
+
+outputs:
+  home: [HTML, RSS]
+  section: [HTML, RSS]
+
 markup:
-  _merge: deep
+  goldmark:
+    renderer:
+      unsafe: true
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block: [["$$", "$$"], ["\\[", "\\]"]]
+          inline: [["$", "$"], ["\\(", "\\)"]]
+      table: true
+      strikethrough: true
   highlight:
+    noClasses: false
     lineNos: false
-security:
-  _merge: deep
-sitemap:
-  _merge: deep
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+    ordered: false
+
+imaging:
+  quality: 85
+
+disableKinds: [taxonomy, term]

@@ -10,12 +10,9 @@ authors:
 - L Moy
 date: "2010-01-01"
 publication: "Proceedings of the thirteenth international conference on artificial intelligence and statistics"
+venue_short: "AISTATS"
 featured: true
 links:
   - type: pdf
     url: yan10a.pdf
 ---
-
-{{< icon name="eye" >}} **Preview:**
-
-<embed src="yan10a.pdf" width="100%" height="800px" type="application/pdf" />

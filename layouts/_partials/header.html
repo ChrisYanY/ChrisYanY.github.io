@@ -1,0 +1,19 @@
+{{- $home := "" | relLangURL }}
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="{{ $home }}">{{ site.Home.Title }}<span class="slash">/ {{ i18n "notes" }}</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="{{ $home }}#writing">{{ i18n "writing" }}</a>
+      <a class="hide-sm" href="{{ $home }}#publications">{{ i18n "publications" }}</a>
+      <a class="hide-sm" href="{{ site.Params.cv | relURL }}" target="_blank" rel="noopener">{{ i18n "cv" }}</a>
+      {{- $switched := false }}
+      {{- range .Translations }}{{ if not $switched }}
+      <a class="lang" href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}">{{ .Language.LanguageName }}</a>
+      {{- $switched = true }}{{ end }}{{ end }}
+      {{- if not $switched }}{{ range $.Sites }}{{ if and (not $switched) (ne .Language.Lang site.Language.Lang) }}
+      <a class="lang" href="{{ .Home.RelPermalink }}" hreflang="{{ .Language.Lang }}">{{ .Language.LanguageName }}</a>
+      {{- $switched = true }}{{ end }}{{ end }}{{ end }}
+      <span class="hide-sm">{{ partial "icons.html" . }}</span>
+    </nav>
+  </div>
+</header>

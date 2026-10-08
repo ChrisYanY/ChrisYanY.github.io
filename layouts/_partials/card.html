@@ -1,0 +1,9 @@
+{{- $cover := resources.Get (printf "covers/%s.svg" .File.ContentBaseName) }}
+<article class="card">
+  <a href="{{ .RelPermalink }}">
+    <div class="cover">{{ with $cover }}<img src="{{ .RelPermalink }}" alt="" loading="lazy" width="800" height="500">{{ end }}</div>
+    <div class="meta"><span class="label">{{ .Params.label }}</span><span class="date">{{ .Date | time.Format "2006.01" }}</span></div>
+    <h3>{{ .Title }}</h3>
+    <p>{{ .Summary | plainify }}</p>
+  </a>
+</article>

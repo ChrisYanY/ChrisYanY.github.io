@@ -1,0 +1,25 @@
+{{- if .IsPage }}
+<script>
+(() => {
+  const links = [...document.querySelectorAll('.toc a')];
+  if (!links.length) return;
+  const map = new Map(links.map(a => [decodeURIComponent(a.hash.slice(1)), a]));
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { links.forEach(l => l.classList.remove('active')); map.get(e.target.id)?.classList.add('active'); } });
+  }, { rootMargin: '0px 0px -75% 0px' });
+  document.querySelectorAll('.prose h2[id], .prose h3[id]').forEach(h => io.observe(h));
+})();
+</script>
+{{- end }}
+{{- if .Store.Get "hasMermaid" }}
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+mermaid.initialize({
+  startOnLoad: true, theme: 'base', securityLevel: 'strict',
+  themeVariables: dark
+    ? { background: '#15171a', primaryColor: '#1d2024', primaryTextColor: '#e7e4dc', primaryBorderColor: '#8fb3d9', lineColor: '#7a8087', secondaryColor: '#1f2b38', tertiaryColor: '#1d2024', fontFamily: 'ui-monospace, Menlo, monospace', fontSize: '13px' }
+    : { background: '#f4f4f2', primaryColor: '#ffffff', primaryTextColor: '#16181b', primaryBorderColor: '#2b547e', lineColor: '#8b9096', secondaryColor: '#dfe5ec', tertiaryColor: '#f4f4f2', fontFamily: 'ui-monospace, Menlo, monospace', fontSize: '13px' }
+});
+</script>
+{{- end }}
