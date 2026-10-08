@@ -3,7 +3,16 @@ document.addEventListener('click', e => {
   const a = e.target.closest('a.js-mail');
   if (!a) return;
   e.preventDefault();
-  location.href = 'mailto:' + atob(a.dataset.m).split('').reverse().join('');
+  const addr = atob(a.dataset.m).split('').reverse().join('');
+  const zh = document.documentElement.lang.startsWith('zh');
+  const toast = document.getElementById('mail-toast') || Object.assign(document.body.appendChild(document.createElement('div')), { id: 'mail-toast', className: 'mail-toast' });
+  const done = ok => {
+    toast.textContent = ok ? (zh ? '邮箱已复制：' : 'Email copied: ') + addr : addr;
+    toast.classList.add('show');
+    clearTimeout(toast._t); toast._t = setTimeout(() => toast.classList.remove('show'), 3200);
+  };
+  (navigator.clipboard ? navigator.clipboard.writeText(addr).then(() => done(true), () => done(false)) : Promise.resolve(done(false)));
+  location.href = 'mailto:' + addr;
 });
 </script>
 {{- if .IsPage }}
