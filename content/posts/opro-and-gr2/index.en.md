@@ -7,6 +7,7 @@ tags: ["LLM", "Prompt Optimization", "Generative Recommendation", "Re-ranking", 
 math: false
 mermaid: true
 translationKey: "opro-and-gr2"
+draft: true
 ---
 
 > **Date**: 2026-07

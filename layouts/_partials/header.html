@@ -3,7 +3,7 @@
   <div class="wrap">
     <a class="wordmark" href="{{ $home }}">{{ site.Home.Title }}<span class="slash">/ {{ i18n "notes" }}</span></a>
     <nav class="nav" aria-label="Primary">
-      <a href="{{ $home }}#writing">{{ i18n "writing" }}</a>
+      {{- if where site.RegularPages "Section" "posts" }}<a href="{{ $home }}#writing">{{ i18n "writing" }}</a>{{ end }}
       <a class="hide-sm" href="{{ $home }}#publications">{{ i18n "publications" }}</a>
       <a class="hide-sm" href="{{ site.Params.cv | relURL }}" target="_blank" rel="noopener">{{ i18n "cv" }}</a>
       {{- $switched := false }}

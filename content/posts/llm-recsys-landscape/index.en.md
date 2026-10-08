@@ -7,6 +7,7 @@ tags: ["Generative Recommendation", "LLM", "Semantic ID", "Cold Start", "Diffusi
 math: true
 mermaid: false
 translationKey: "llm-recsys-landscape"
+draft: true
 ---
 
 **Date: February 24, 2026**

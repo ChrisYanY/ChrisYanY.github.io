@@ -7,6 +7,7 @@ tags: ["扩散模型", "生成式推荐", "Flow Matching", "序列推荐"]
 math: true
 mermaid: false
 translationKey: "diffusion-models-for-recsys"
+draft: true
 ---
 
 **日期：2026年2月27日**
