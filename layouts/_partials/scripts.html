@@ -1,3 +1,11 @@
+<script>
+document.addEventListener('click', e => {
+  const a = e.target.closest('a.js-mail');
+  if (!a) return;
+  e.preventDefault();
+  location.href = 'mailto:' + atob(a.dataset.m).split('').reverse().join('');
+});
+</script>
 {{- if .IsPage }}
 <script>
 (() => {
