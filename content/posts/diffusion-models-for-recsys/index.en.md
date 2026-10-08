@@ -7,7 +7,7 @@ tags: ["Diffusion", "Generative Recommendation", "Flow Matching", "Sequential Re
 math: true
 mermaid: false
 translationKey: "diffusion-models-for-recsys"
-draft: true
+ai_assisted: true
 ---
 
 **Date: February 27, 2026**

@@ -4,6 +4,7 @@
     <div class="crumbs">
       <a href="{{ "" | relLangURL }}">← {{ i18n "backHome" }}</a>
       <span class="label">{{ .Params.label }}</span>
+      {{- if .Params.ai_assisted }}<span class="ai-tag">{{ i18n "aiTag" }}</span>{{ end }}
     </div>
     <h1>{{ .Title }}</h1>
     {{ with .Params.summary }}<p class="dek">{{ . }}</p>{{ end }}
@@ -16,6 +17,7 @@
 </header>
 <div class="wrap post-layout">
   <article class="prose">
+    {{- if .Params.ai_assisted }}<p class="ai-note">{{ or .Params.ai_note (i18n "aiNote") }}</p>{{ end }}
     {{ .Content }}
     {{- with .Params.tags }}<div class="tags">{{ range . }}<span>{{ . }}</span>{{ end }}</div>{{ end }}
     <div class="post-foot">

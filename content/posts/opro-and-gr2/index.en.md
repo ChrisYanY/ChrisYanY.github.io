@@ -7,12 +7,12 @@ tags: ["LLM", "Prompt Optimization", "Generative Recommendation", "Re-ranking", 
 math: false
 mermaid: true
 translationKey: "opro-and-gr2"
-draft: true
+ai_assisted: true
 ---
 
 > **Date**: 2026-07
 > **Paper 1**: Large Language Models as Optimizers (OPRO) — Google DeepMind, ICLR 2024
-> **Paper 2**: GR2: Generative Reasoning Re-ranker — Meta AI, arXiv 2602.07774, Jan 2026
+> **Paper 2**: GR2: Generative Reasoning Re-ranker — Meta AI, arXiv 2602.07774, Feb 2026
 
 ---
 

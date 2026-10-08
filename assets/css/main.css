@@ -67,6 +67,10 @@ img, svg { max-width: 100%; display: block; }
   color: var(--accent);
 }
 
+.ai-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--faint); }
+.ai-note { font-family: var(--mono); font-size: 12.5px; line-height: 1.6; color: var(--muted); border: 1px dashed var(--line); border-radius: 2px; padding: 10px 14px; margin: 0 0 36px; }
+html[lang^="zh"] .ai-note { font-family: var(--zh-body); font-size: 14px; }
+
 /* ---------- header ---------- */
 .site-header { border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 88%, transparent); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(6px); }
 .site-header .wrap { display: flex; align-items: center; gap: 24px; height: 64px; }

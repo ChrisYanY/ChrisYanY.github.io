@@ -7,7 +7,7 @@ tags: ["推荐系统", "多任务学习", "分布式训练", "向量召回"]
 math: false
 mermaid: true
 translationKey: "may-2026-paper-notes"
-draft: true
+ai_assisted: true
 ---
 
 > **整理**: Chris Yan | **日期**: 2026-06-05 | **论文数量**: 5 篇

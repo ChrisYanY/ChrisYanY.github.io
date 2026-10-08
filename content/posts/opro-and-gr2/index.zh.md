@@ -7,12 +7,12 @@ tags: ["大语言模型", "提示词优化", "生成式推荐", "重排", "强�
 math: false
 mermaid: true
 translationKey: "opro-and-gr2"
-draft: true
+ai_assisted: true
 ---
 
 > **日期**: 2026-07
 > **Paper 1**: Large Language Models as Optimizers (OPRO) — Google DeepMind, ICLR 2024
-> **Paper 2**: GR2: Generative Reasoning Re-ranker — Meta AI, arXiv 2602.07774, Jan 2026
+> **Paper 2**: GR2: Generative Reasoning Re-ranker — Meta AI, arXiv 2602.07774, Feb 2026
 
 ---
 
