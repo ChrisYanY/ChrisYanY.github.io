@@ -62,7 +62,8 @@ circle.off {{ animation-name: dn-off; }}
     return svg(''.join(out), css)
 
 def landscape():
-    # a map of 41 papers; edges fire like activations, the hub cluster breathes
+    # a map of 41 papers: messages travel along edges between clusters, edges light up as they
+    # carry them, and the hub cluster breathes
     r = random.Random(41); out = []; nodes = []
     centers = [(170,150),(380,110),(600,160),(250,330),(470,300),(660,360),(380,420)]
     sizes = [7,6,6,6,6,5,5]  # = 41 papers
@@ -79,7 +80,15 @@ def landscape():
     for (x1, y1, x2, y2, same) in edges:
         base = .5 if same else .28
         out.append(f'<line class="e" x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
-                   f'style="--b:{base};animation-duration:{9 + r.random()*7:.1f}s;animation-delay:{-r.random()*16:.1f}s"/>')
+                   f'style="--b:{base};animation-duration:{6 + r.random()*5:.1f}s;animation-delay:{-r.random()*11:.1f}s"/>')
+    # message packets: small dots that travel along a handful of edges, in both directions
+    cand = sorted(edges, key=lambda e: (e[4], -math.hypot(e[0]-e[2], e[1]-e[3])))[:14]
+    r.shuffle(cand)
+    for k, (x1, y1, x2, y2, same) in enumerate(cand[:10]):
+        if k % 2: x1, y1, x2, y2 = x2, y2, x1, y1
+        dur = 3.2 + r.random()*2.4
+        out.append(f'<circle class="pkt" cx="0" cy="0" r="3" fill="{ACC}" '
+                   f'style="--x1:{x1:.1f}px;--y1:{y1:.1f}px;--x2:{x2:.1f}px;--y2:{y2:.1f}px;animation-duration:{dur:.1f}s;animation-delay:{-r.random()*dur*2:.1f}s"/>')
     hub = 4
     for i,(x,y,c) in enumerate(nodes):
         col = ACC if c == hub else (ACC2 if c == 1 else INK)
@@ -89,8 +98,15 @@ def landscape():
     css = f"""
 line.e {{ stroke: {MUTED}; stroke-width: 1; opacity: var(--b); animation: fire ease-in-out infinite; }}
 @keyframes fire {{
-  0%, 82%, 100% {{ opacity: var(--b); stroke: {MUTED}; stroke-width: 1; }}
-  90% {{ opacity: .95; stroke: {ACC}; stroke-width: 1.6; }}
+  0%, 55%, 100% {{ opacity: var(--b); stroke: {MUTED}; stroke-width: 1; }}
+  75% {{ opacity: .95; stroke: {ACC}; stroke-width: 1.7; }}
+}}
+circle.pkt {{ opacity: 0; animation: pkt linear infinite; }}
+@keyframes pkt {{
+  0%   {{ transform: translate(var(--x1), var(--y1)); opacity: 0; }}
+  12%  {{ opacity: 1; }}
+  50%  {{ transform: translate(var(--x2), var(--y2)); opacity: 1; }}
+  58%, 100% {{ transform: translate(var(--x2), var(--y2)); opacity: 0; }}
 }}
 circle.hub {{ transform-box: fill-box; transform-origin: center; animation: breathe 4.8s ease-in-out infinite; }}
 @keyframes breathe {{ 0%, 100% {{ transform: scale(1); }} 50% {{ transform: scale(1.35); }} }}
