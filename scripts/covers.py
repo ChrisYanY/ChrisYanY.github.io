@@ -117,6 +117,32 @@ def flywheel():
     out.append(f'<circle cx="{cx}" cy="{cy}" r="4" fill="{MUTED}"/>')
     return svg("".join(out))
 
+def orchestra():
+    # a person (LLM) at the centre, orchestrating a ring of precise instruments (classic models)
+    out = []
+    cx, cy = 400, 250
+    n = 6
+    for i in range(n):
+        a = math.radians(-90 + i * 360 / n)
+        x, y = cx + 175 * math.cos(a), cy + 150 * math.sin(a)
+        out.append(f'<line x1="{cx}" y1="{cy}" x2="{x:.1f}" y2="{y:.1f}" stroke="{ACC}" stroke-width="1.4" stroke-dasharray="5 5"/>')
+        w, h = 92, 46
+        out.append(f'<rect x="{x-w/2:.1f}" y="{y-h/2:.1f}" width="{w}" height="{h}" rx="2" fill="#e8e8e5" stroke="{INK}" stroke-width="1.5"/>')
+        # gauge: tick marks + needle, each instrument reads a slightly different value
+        gx, gy = x, y + 12
+        for k in range(9):
+            ta = math.radians(200 + k * 17.5)
+            r1, r2 = 15, 19 if k % 2 == 0 else 17
+            out.append(f'<line x1="{gx + r1*math.cos(ta):.1f}" y1="{gy + r1*math.sin(ta):.1f}" x2="{gx + r2*math.cos(ta):.1f}" y2="{gy + r2*math.sin(ta):.1f}" stroke="{MUTED}" stroke-width="1"/>')
+        na = math.radians(200 + (0.35 + 0.08 * i) * 140)
+        out.append(f'<line x1="{gx}" y1="{gy}" x2="{gx + 14*math.cos(na):.1f}" y2="{gy + 14*math.sin(na):.1f}" stroke="{ACC}" stroke-width="1.6"/>')
+        out.append(f'<circle cx="{gx}" cy="{gy}" r="1.8" fill="{INK}"/>')
+    # the person / LLM
+    out.append(f'<circle cx="{cx}" cy="{cy}" r="46" fill="none" stroke="{FAINT}" stroke-width="1" stroke-dasharray="2 6"/>')
+    out.append(f'<circle cx="{cx}" cy="{cy - 8}" r="10" fill="{ACC}"/>')
+    out.append(f'<path d="M{cx-20} {cy+22} Q{cx} {cy-2} {cx+20} {cy+22}" fill="none" stroke="{ACC}" stroke-width="2.2"/>')
+    return svg("".join(out))
+
 def accent():
     r = random.Random(3); out = []
     centers = [(120,110,34),(250,70,26),(230,200,30),(330,150,22)]
@@ -129,6 +155,6 @@ def accent():
     return f'<svg class="intro-accent" viewBox="0 0 420 300" aria-hidden="true">{"".join(out)}</svg>'
 
 OUT.mkdir(parents=True, exist_ok=True)
-for name, fn in [("diffusion-models-for-recsys", diffusion), ("llm-recsys-landscape", landscape), ("opro-and-gr2", opro), ("may-2026-paper-notes", towers), ("creator-flywheel", flywheel)]:
+for name, fn in [("diffusion-models-for-recsys", diffusion), ("llm-recsys-landscape", landscape), ("opro-and-gr2", opro), ("may-2026-paper-notes", towers), ("creator-flywheel", flywheel), ("llm-takeover-recsys", orchestra)]:
     (OUT/f"{name}.svg").write_text(fn()); print("wrote", name)
 pathlib.Path(sys.argv[2]).write_text(accent()); print("wrote accent")
