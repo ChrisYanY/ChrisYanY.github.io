@@ -22,7 +22,7 @@ Why do I think so? Because an LLM is more like a person than a precision machine
 
 What a piece of content is about used to be something only human reviewers could tell you. Classic recommender systems never truly knew it; they simply worked around the problem. Collaborative filtering and sequence modeling don't need to understand the content at all. They only need to observe "people who liked A also liked what?" The price is that you need traffic first. Until enough people have seen a new piece of content, it is close to a blank to the system.
 
-Anyone who has worked on recommendations has seen the consequences of not understanding content: the system easily falls into a local optimum. Whatever topics have good engagement soak up all the traffic, and "personalization" ends up looking the same for everyone. Platforms fill up with skits, borderline sexual content, and pet videos: content low in information but great on the metrics.
+Anyone who has worked on recommendations has seen the consequences of not understanding content: the system easily falls into a local optimum. Whatever topics have good engagement soak up all the traffic, and "personalization" ends up looking the same for everyone. Platforms fill up with memes, borderline sexual content, and pet videos: content low in information but great on the metrics.
 
 It's not that nobody wants to break out. On one hand, metric pressure keeps platforms from exploring enough. On the other, when you don't understand the content, every bit of exploration has to be paid for with real traffic, and that is expensive. So balancing traffic has largely been left to operations teams and manual intervention, or to hand-designed diversity metrics that only partially help.
 
