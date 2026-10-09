@@ -1,6 +1,6 @@
 {{ define "main" }}
 <section class="section wrap" style="padding-top:72px">
   <div class="section-head"><h2>{{ .Title }}</h2><span class="count">{{ printf "%02d" (len .Pages) }}</span></div>
-  <div class="grid">{{ range .Pages.ByDate.Reverse }}{{ partial "card.html" . }}{{ end }}</div>
+  <div class="grid">{{ range where .Pages "Params.pinned" true }}{{ partial "card.html" . }}{{ end }}{{ range (where .Pages "Params.pinned" "!=" true).ByDate.Reverse }}{{ partial "card.html" . }}{{ end }}</div>
 </section>
 {{ end }}

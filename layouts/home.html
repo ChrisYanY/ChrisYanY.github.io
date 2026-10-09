@@ -17,7 +17,8 @@
 <section id="writing" class="section wrap">
   <div class="section-head"><h2>{{ i18n "writing" }}</h2><span class="count">{{ printf "%02d" (len $posts) }}</span></div>
   <div class="grid">
-    {{- range $posts.ByDate.Reverse }}{{ partial "card.html" . }}{{ end }}
+    {{- range where $posts "Params.pinned" true }}{{ partial "card.html" . }}{{ end }}
+    {{- range (where $posts "Params.pinned" "!=" true).ByDate.Reverse }}{{ partial "card.html" . }}{{ end }}
   </div>
 </section>
 {{- end }}

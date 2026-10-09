@@ -9,6 +9,7 @@ mermaid: false
 translationKey: "llm-takeover-recsys"
 ai_assisted: true
 ai_note: "The views are my own; the write-up was AI-assisted."
+pinned: true
 ---
 
 There is a growing tendency in academia to pursue LLMs that fully take over recommender systems. In my view, that is a dead end, or at the very least not the right road, and we shouldn't be sprinting down it.

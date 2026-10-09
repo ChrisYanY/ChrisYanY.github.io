@@ -67,6 +67,7 @@ img, svg { max-width: 100%; display: block; }
   color: var(--accent);
 }
 
+.pin-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--paper); background: var(--accent); padding: 1px 7px; border-radius: 2px; }
 .ai-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--faint); }
 .ai-note { font-family: var(--mono); font-size: 12.5px; line-height: 1.6; color: var(--muted); border: 1px dashed var(--line); border-radius: 2px; padding: 10px 14px; margin: 0 0 36px; }
 html[lang^="zh"] .ai-note { font-family: var(--zh-body); font-size: 14px; }

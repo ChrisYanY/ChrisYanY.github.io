@@ -9,6 +9,7 @@ mermaid: false
 translationKey: "llm-takeover-recsys"
 ai_assisted: true
 ai_note: "观点来自作者本人，文字整理由 AI 辅助完成。"
+pinned: true
 ---
 
 现在学术界有一种倾向：追求让 LLM 完全接管推荐系统。在我看来，这是一条死路，至少不是正确的路，我们不应该在这条路上一路狂奔。
