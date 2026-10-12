@@ -12,9 +12,11 @@ ai_note: "The views are my own; the write-up was AI-assisted."
 pinned: true
 ---
 
-There is a growing tendency in academia to pursue LLMs that fully take over recommender systems. In my view, that is a dead end, or at the very least not the right road, and we shouldn't be sprinting down it.
+There is a growing tendency in academia to pursue LLMs that fully take over recommender systems. I stay open to a "full replacement" one day, or to some kind of "stitched" replacement. But with today's technology, full replacement is neither well supported nor practical. We shouldn't sprint down that single road; more flexible paradigms deserve a place in the discussion.
 
-LLMs combined with classic computational models are the right approach. Different model architectures are naturally suited to different jobs. When people do math, they still reach for pen and paper, or a calculator, once the arithmetic gets hard. The same logic applies here.
+This isn't just my opinion. Snap's recently published technical report candidly notes that their attempts to replace a production cascade with a generative model overnight produced negative online results; today, every candidate their model produces still passes through the late-stage ranker, and the model's built-in ranking still trails the production ranker.[^snap]
+
+LLMs combined with classic computational models are exactly such a paradigm: more flexible, and more practical. Different model architectures are naturally suited to different jobs. When people do math, they still reach for pen and paper, or a calculator, once the arithmetic gets hard. The same logic applies here.
 
 Why do I think so? Because an LLM is more like a person than a precision machine. Once you see that, it becomes clear where it belongs in a recommender system.
 
@@ -70,6 +72,7 @@ Put simply: LLMs replace the *person*, not the probability model.
 
 ---
 
+[^snap]: GRP Team, Snap Inc. *GRP v0.1 Technical Report.* arXiv:2609.36688, 2026.
 [^fb]: Xinran He et al. *Practical Lessons from Predicting Clicks on Ads at Facebook.* ADKDD 2014.
 [^wd]: Heng-Tze Cheng et al. *Wide & Deep Learning for Recommender Systems.* DLRS 2016. arXiv:1606.07792.
 [^kahneman]: Daniel Kahneman. *Thinking, Fast and Slow.* 2011.
