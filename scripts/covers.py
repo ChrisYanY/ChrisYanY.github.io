@@ -237,6 +237,52 @@ circle.halo {{ transform-origin: {cx}px {cy}px; animation: spin 40s linear infin
 """
     return svg("".join(out), css)
 
+def runway():
+    # a reward landscape: a near local peak and a higher far one. The greedy walker stays on the near
+    # peak; the other walker goes down through the valley (the runway) and climbs to the far peak.
+    out = []
+    g = lambda x, m, s: math.exp(-((x - m) / s) ** 2 / 2)
+    f = lambda x: 410 - 135 * g(x, 235, 62) - 255 * g(x, 590, 88)
+    xs = list(range(60, 745, 5))
+    d = "M" + " L".join(f"{x} {f(x):.1f}" for x in xs)
+    for k, op in [(18, .35), (36, .2)]:  # faint echoes of the curve, like contour lines
+        echo = "M" + " L".join(f"{x} {f(x) + k:.1f}" for x in xs)
+        out.append(f'<path d="{echo}" fill="none" stroke="{FAINT}" stroke-width="1" opacity="{op}"/>')
+    out.append(f'<path d="{d}" fill="none" stroke="{INK}" stroke-width="1.6"/>')
+    # peak heights, carried to the right margin
+    for px in (235, 590):
+        y = min(f(x) for x in range(px - 20, px + 21))
+        out.append(f'<line x1="{px}" y1="{y:.1f}" x2="760" y2="{y:.1f}" stroke="{FAINT}" stroke-width="1" stroke-dasharray="2 5"/>')
+    # the runway: the stretch where the reward goes down before it goes up
+    vx0, vx1, ry = 300, 500, 455
+    out.append(f'<line class="rw" x1="{vx0}" y1="{ry}" x2="{vx1}" y2="{ry}" stroke="{ACC}" stroke-width="1.4" stroke-dasharray="6 5"/>')
+    for x in (vx0, vx1):
+        out.append(f'<line x1="{x}" y1="{ry - 6}" x2="{x}" y2="{ry + 6}" stroke="{ACC}" stroke-width="1.4"/>')
+    # trail of the far-sighted walker
+    tx = [x for x in xs if 80 <= x <= 590]
+    out.append(f'<path class="trail" d="M' + " L".join(f"{x} {f(x) - 9:.1f}" for x in tx) + f'" fill="none" stroke="{ACC}" stroke-width="1.2" stroke-dasharray="3 8" opacity=".55"/>')
+    # greedy walker: parked on the near peak, looking left and right
+    gy = f(235) - 9
+    out.append(f'<circle class="greedy" cx="235" cy="{gy:.1f}" r="6" fill="{PAPER}" stroke="{MUTED}" stroke-width="1.6"/>')
+    for s in (-1, 1):
+        out.append(f'<path class="look" d="M{235 + s*16} {gy - 4:.1f} l{s*7} 4 l{-s*7} 4" fill="none" stroke="{FAINT}" stroke-width="1.2" '
+                   f'style="animation-delay:{0 if s < 0 else -3}s"/>')
+    # far-sighted walker: keyframes sampled along the curve, a long pause at the top
+    pts = [(x, f(x) - 9) for x in tx[::3]] + [(590, f(590) - 9)]
+    n = len(pts)
+    kf = "".join(f"{i / (n - 1) * 78:.2f}% {{ transform: translate({x}px, {y:.1f}px); }}\n" for i, (x, y) in enumerate(pts))
+    kf += f"100% {{ transform: translate(590px, {f(590) - 9:.1f}px); }}\n"
+    out.append(f'<circle class="walker" cx="0" cy="0" r="6" fill="{ACC}"/>')
+    css = f"""
+circle.walker {{ animation: climb 18s linear infinite; }}
+@keyframes climb {{ {kf} }}
+path.trail {{ animation: flow11 3s linear infinite; }}
+line.rw {{ animation: flow11 4s linear infinite; }}
+path.look {{ animation: look 6s ease-in-out infinite; opacity: 0; }}
+@keyframes look {{ 0%, 100% {{ opacity: 0; }} 20%, 35% {{ opacity: 1; }} 50% {{ opacity: 0; }} }}
+"""
+    return svg("".join(out), css)
+
 def accent():
     r = random.Random(3); out = []
     centers = [(120,110,34),(250,70,26),(230,200,30),(330,150,22)]
@@ -249,6 +295,6 @@ def accent():
     return f'<svg class="intro-accent" viewBox="0 0 420 300" aria-hidden="true">{"".join(out)}</svg>'
 
 OUT.mkdir(parents=True, exist_ok=True)
-for name, fn in [("diffusion-models-for-recsys", diffusion), ("llm-recsys-landscape", landscape), ("opro-and-gr2", opro), ("may-2026-paper-notes", towers), ("creator-flywheel", flywheel), ("llm-takeover-recsys", orchestra)]:
+for name, fn in [("diffusion-models-for-recsys", diffusion), ("llm-recsys-landscape", landscape), ("opro-and-gr2", opro), ("may-2026-paper-notes", towers), ("creator-flywheel", flywheel), ("llm-takeover-recsys", orchestra), ("llm-runway", runway)]:
     (OUT/f"{name}.svg").write_text(fn()); print("wrote", name)
 pathlib.Path(sys.argv[2]).write_text(accent()); print("wrote accent")
