@@ -53,9 +53,23 @@ ai_note: "观点来自作者本人与 AI 的讨论，文字整理由 AI 辅助�
 
 而且，还要承认一个更根本的事实：**人其实并不能稳定地做出正确的决定。** 我们记得的，是那些押对了的人；同一时期押错方向、投入几年最后不了了之的人，我们不会记得。人在高不确定性下押注的命中率，整体上并不高。我们之所以觉得「人能做对」，很大程度上是幸存者偏差。
 
+## 任天堂：枯萎技术的水平思考
+
+说到知识迁移，我最佩服的公司是任天堂。它的设计哲学来自横井军平的一句话：「枯萎技术的水平思考」。[^yokoi] 意思是不追最新的技术，而是把已经成熟、便宜、被人吃透了的技术，用到别人没想到的地方去。
+
+任天堂几乎每一次突破都是这样来的。据说横井在新干线上看到一个上班族无聊地按着液晶计算器，于是有了 Game & Watch。Game Boy 用的是黑白屏，同期对手都是彩屏、带背光，但 Game Boy 便宜、耐摔、电池耐用，最后赢了。Wii 手柄里的加速度传感器是当时已经很普及的廉价器件，机器的性能明显弱于同代对手。Switch 用的是一颗两年前的移动芯片。
+
+我觉得这特别了不起。而且其实不只是任天堂，人类大部分企业级的突破都来自这里。经济学家 Brian Arthur 有一个观点：新技术几乎都是已有技术的重新组合。[^arthur] iPhone 里的多点触控、电容屏、移动芯片，单拿出来都不是苹果发明的。
+
+但细看任天堂，技术本身不是最难的部分。把成熟的技术搬到新的地方，前面说过，这恰恰是 LLM 也能做的事。真正难的是另外两件事。
+
+**第一，它拒绝了整个行业的 reward。** 游戏行业长期的 reward 是机能、画面、参数，所有人在同一个指标上贪心地往前挤。任天堂选择更弱的技术，等于主动退出这场竞争，转而去优化另一个目标：谁会来玩，玩起来是什么感觉。Wii 把老人和小孩都拉进了客厅，靠的不是更好的显卡，而是换了一个 reward。而选择哪个 reward，本身是一个价值判断。
+
+**第二，它有 runway。** 任天堂也押错过很多次。Virtual Boy 几乎是横井本人的滑铁卢，他不久后就离开了任天堂。「枯萎技术的水平思考」并不是一套保证成功的公式，我们记住了 Game Boy，却容易忘了 Virtual Boy，这又是幸存者偏差。Wii U 在商业上也很失败，但「主机和掌机合一」的想法没有被放弃，五年后变成了 Switch。一个在负结果上坚持了好几年、最后才做成的想法，这就是 runway。
+
 ## 差别在 reward
 
-那人和 LLM 的差别到底在哪？我觉得根源在 reward。
+那么，人和 LLM 的差别到底在哪？任天堂的例子已经给了提示：我觉得根源在 reward。
 
 LLM 在训练中被奖励两件事：预训练时，预测语料里最可能出现的下一个词；对齐训练时，让眼前的打分者满意。前者让它的默认立场向共识靠拢，后者让它倾向于讨好：你一反驳，它就容易改口。[^syco] 在和 AI 讨论这篇文章的过程中，我两次反驳它，它两次都改了口。那两次我是对的，但如果我是错的呢？
 
@@ -106,4 +120,6 @@ LLM 在训练中被奖励两件事：预训练时，预测语料里最可能出�
 [^kohavi]: Ron Kohavi, Diane Tang, Ya Xu. *Trustworthy Online Controlled Experiments: A Practical Guide to A/B Testing.* Cambridge University Press, 2020.
 [^si]: Chenglei Si, Diyi Yang, Tatsunori Hashimoto. *Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study with 100+ NLP Researchers.* ICLR 2025. arXiv:2409.04109.
 [^paradigms]: Cheng et al. *Wide & Deep Learning for Recommender Systems*, 2016；Covington et al. *Deep Neural Networks for YouTube Recommendations*, RecSys 2016；Zhou et al. *Deep Interest Network for Click-Through Rate Prediction*, KDD 2018；Kang & McAuley. *Self-Attentive Sequential Recommendation*, ICDM 2018；Rajput et al. *Recommender Systems with Generative Retrieval*, NeurIPS 2023；Zhai et al. *Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations*, ICML 2024。
+[^yokoi]: 横井軍平、牧野武文.『横井軍平ゲーム館』. アスキー, 1997.
+[^arthur]: W. Brian Arthur. *The Nature of Technology: What It Is and How It Evolves.* Free Press, 2009.
 [^syco]: Mrinank Sharma et al. *Towards Understanding Sycophancy in Language Models.* ICLR 2024. arXiv:2310.13548.

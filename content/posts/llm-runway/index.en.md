@@ -53,9 +53,23 @@ What humans really have in addition is not ideas but three things: persisting th
 
 There's an even more basic fact to admit: **humans don't reliably make the right call either.** We remember the people who bet right. The people who bet on the wrong direction at the same time, spent years on it and quietly gave up, we don't remember. Overall, the hit rate of human bets under high uncertainty is not high. Our sense that "humans get it right" is largely survivorship bias.
 
+## Nintendo: lateral thinking with withered technology
+
+When it comes to knowledge transfer, the company I admire most is Nintendo. Its design philosophy comes from a phrase of Gunpei Yokoi's: "lateral thinking with withered technology."[^yokoi] Don't chase the newest technology; take technology that is mature, cheap and well understood, and use it somewhere nobody else thought of.
+
+Almost every Nintendo breakthrough came this way. The story goes that Yokoi saw a bored businessman on the bullet train fiddling with an LCD calculator, and that became the Game & Watch. The Game Boy had a monochrome screen while its rivals had backlit colour screens, but it was cheap, tough and easy on batteries, and it won. The accelerometers in the Wii remote were cheap parts that were already everywhere, and the console was clearly weaker than its competitors. The Switch shipped with a mobile chip that was two years old.
+
+I find this remarkable. And it isn't just Nintendo: most breakthroughs at the company level come from here. The economist Brian Arthur argues that new technologies are almost always new combinations of existing ones.[^arthur] Multi-touch, capacitive screens, mobile chips: none of the iPhone's parts were invented by Apple.
+
+But look closely at Nintendo, and the technology is not the hard part. Carrying mature technology somewhere new is, as I said above, exactly what LLMs can do too. The hard part is two other things.
+
+**First, it rejected the whole industry's reward.** For years the games industry's reward was horsepower, graphics, specs, with everyone pushing greedily along the same metric. By choosing weaker technology, Nintendo deliberately stepped out of that race and optimized a different objective: who would play, and how it would feel. The Wii brought grandparents and kids into the living room, not with a better graphics card, but by changing the reward. And choosing which reward to pursue is itself a value judgment.
+
+**Second, it had a runway.** Nintendo bet wrong plenty of times. The Virtual Boy was close to Yokoi's own Waterloo, and he left Nintendo not long after. Lateral thinking with withered technology is not a formula that guarantees success; we remember the Game Boy and easily forget the Virtual Boy, which is survivorship bias again. The Wii U was a commercial failure too, but the idea of merging the home console and the handheld wasn't abandoned, and five years later it became the Switch. An idea held through years of negative results before it finally worked: that's a runway.
+
 ## The difference is the reward
 
-So where is the real difference between humans and LLMs? I think the root is the reward.
+So where is the real difference between humans and LLMs? Nintendo already hints at it: I think the root is the reward.
 
 An LLM is rewarded for two things in training: in pretraining, predicting the most likely next word in its corpus; in alignment, satisfying the rater in front of it. The first pulls its default position toward consensus. The second makes it inclined to please: push back, and it tends to change its answer.[^syco] While discussing this post with an AI, I pushed back twice, and twice it changed its answer. Both times I was right. But what if I'd been wrong?
 
@@ -106,4 +120,6 @@ And whether to give them that runway is itself a human decision.
 [^kohavi]: Ron Kohavi, Diane Tang, Ya Xu. *Trustworthy Online Controlled Experiments: A Practical Guide to A/B Testing.* Cambridge University Press, 2020.
 [^si]: Chenglei Si, Diyi Yang, Tatsunori Hashimoto. *Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study with 100+ NLP Researchers.* ICLR 2025. arXiv:2409.04109.
 [^paradigms]: Cheng et al. *Wide & Deep Learning for Recommender Systems*, 2016; Covington et al. *Deep Neural Networks for YouTube Recommendations*, RecSys 2016; Zhou et al. *Deep Interest Network for Click-Through Rate Prediction*, KDD 2018; Kang & McAuley. *Self-Attentive Sequential Recommendation*, ICDM 2018; Rajput et al. *Recommender Systems with Generative Retrieval*, NeurIPS 2023; Zhai et al. *Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations*, ICML 2024.
+[^yokoi]: Gunpei Yokoi, Takefumi Makino. *Yokoi Gunpei Game-kan* (横井軍平ゲーム館). ASCII, 1997.
+[^arthur]: W. Brian Arthur. *The Nature of Technology: What It Is and How It Evolves.* Free Press, 2009.
 [^syco]: Mrinank Sharma et al. *Towards Understanding Sycophancy in Language Models.* ICLR 2024. arXiv:2310.13548.
