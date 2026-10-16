@@ -283,6 +283,46 @@ path.look {{ animation: look 6s ease-in-out infinite; opacity: 0; }}
 """
     return svg("".join(out), css)
 
+def reduce():
+    # many candidates (a dense field) are ranked into a few groups by the classic system;
+    # the LLM (accent selector) only chooses among the groups, pausing on one at a time
+    out = []; r = random.Random(16)
+    for _ in range(170):
+        x, y = r.uniform(60, 320), r.gauss(250, 75)
+        if 50 < y < 450:
+            out.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r.choice([1.4, 1.8, 2.2])}" fill="{r.choice([FAINT, MUTED])}" opacity="{r.uniform(.35, .8):.2f}"/>')
+    ys = [130, 210, 290, 370]
+    bx, bw, bh = 470, 180, 46
+    for y in ys:
+        out.append(f'<path class="feed" d="M330 {250 + (y - 250) * .35:.0f} C 400 {250 + (y - 250) * .6:.0f}, 420 {y}, {bx} {y}" fill="none" stroke="{FAINT}" stroke-width="1.2" stroke-dasharray="4 6"/>')
+    order = [1, 3, 0, 2]          # visiting order of the groups: not top-to-bottom, so it reads as a choice
+    T, n = 16, len(order)
+    for i, y in enumerate(ys):
+        out.append(f'<rect x="{bx}" y="{y - bh / 2}" width="{bw}" height="{bh}" rx="3" fill="{PAPER}" stroke="{INK}" stroke-width="1.4"/>')
+        for k in range(7):  # ranked items inside the group, longest first
+            w = 120 - k * 14
+            out.append(f'<line x1="{bx + 14}" y1="{y - 15 + k * 5}" x2="{bx + 14 + w}" y2="{y - 15 + k * 5}" stroke="{MUTED}" stroke-width="1.6" opacity="{.85 - k * .08:.2f}"/>')
+        out.append(f'<rect class="sel{i}" x="{bx - 4}" y="{y - bh / 2 - 4}" width="{bw + 8}" height="{bh + 8}" rx="5" fill="none" stroke="{ACC}" stroke-width="2"/>')
+    # selector: a bracket plus the LLM dot, gliding between groups
+    out.append(f'<g class="selector"><path d="M672 -18 L660 0 L672 18" fill="none" stroke="{ACC}" stroke-width="2"/>'
+               f'<circle cx="700" cy="0" r="8" fill="{ACC}"/><circle cx="700" cy="0" r="16" fill="none" stroke="{ACC}" stroke-width="1" opacity=".4"/></g>')
+    seg = 100 / n
+    kf, sel = [], {i: [] for i in range(len(ys))}
+    for j, g in enumerate(order):
+        a, b = j * seg, j * seg + seg * .8    # hold for 80% of the segment, glide for the rest
+        kf.append(f"{a:.2f}%, {b:.2f}% {{ transform: translateY({ys[g]}px); }}")
+        sel[g].append((a + 2, b))
+    kf.append(f"100% {{ transform: translateY({ys[order[0]]}px); }}")
+    css = f"""
+g.selector {{ animation: pick {T}s ease-in-out infinite; }}
+@keyframes pick {{ {' '.join(kf)} }}
+path.feed {{ animation: flow10 2.6s linear infinite; }}
+"""
+    for i, spans in sel.items():
+        steps = ["0%, 100% { opacity: 0; }"] + [f"{a:.2f}%, {b:.2f}% {{ opacity: 1; }} {a - 1.5:.2f}%, {b + 1.5:.2f}% {{ opacity: 0; }}" for a, b in spans]
+        css += f"rect.sel{i} {{ opacity: 0; animation: sel{i} {T}s ease-in-out infinite; }}\n@keyframes sel{i} {{ {' '.join(steps)} }}\n"
+    return svg("".join(out), css)
+
 def accent():
     r = random.Random(3); out = []
     centers = [(120,110,34),(250,70,26),(230,200,30),(330,150,22)]
@@ -295,6 +335,6 @@ def accent():
     return f'<svg class="intro-accent" viewBox="0 0 420 300" aria-hidden="true">{"".join(out)}</svg>'
 
 OUT.mkdir(parents=True, exist_ok=True)
-for name, fn in [("diffusion-models-for-recsys", diffusion), ("llm-recsys-landscape", landscape), ("opro-and-gr2", opro), ("may-2026-paper-notes", towers), ("creator-flywheel", flywheel), ("llm-takeover-recsys", orchestra), ("llm-runway", runway)]:
+for name, fn in [("diffusion-models-for-recsys", diffusion), ("llm-recsys-landscape", landscape), ("opro-and-gr2", opro), ("may-2026-paper-notes", towers), ("creator-flywheel", flywheel), ("llm-takeover-recsys", orchestra), ("llm-runway", runway), ("decision-dimensionality", reduce)]:
     (OUT/f"{name}.svg").write_text(fn()); print("wrote", name)
 pathlib.Path(sys.argv[2]).write_text(accent()); print("wrote accent")
