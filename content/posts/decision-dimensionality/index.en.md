@@ -13,7 +13,13 @@ ai_note: "The views come from the author's own discussion with an AI; the write-
 
 In the previous two posts, I argued first that [LLMs replace the *person*, not the probability model](/posts/llm-takeover-recsys/), and then that if we let an LLM iterate on a recommender system by itself, [what it lacks isn't intelligence but runway](/posts/llm-runway/).
 
-This post tries to answer a more concrete question. Everyone in the industry is talking about "LLM-native" recommendation. What actually counts as LLM-native? And in a feed, where can it really land?
+This post started from something I ran into recently. I've been trying out a kind of model built specifically for judgments, one that outputs calibrated probabilities directly,[^jev] and using it to label content: is this user-generated, is this AI-generated. It does remarkably well.
+
+That reminded me of a technique used at the blending and re-ranking stage: adding contextual bandits that change the mix of candidates based on what the user is actually interested in. These methods have worked very well in the past. Meanwhile, classic recommender systems have never been great at adjusting to real-time interest; the adjustments tend to feel either forced or clumsy.
+
+So if LLMs are this good at content understanding and labeling, could they label and adjust the mix of candidates according to real-time interest? Wouldn't that reduce the dimensionality of the decision and improve system metrics at the same time?
+
+Answering that takes two steps. Everyone in the industry is talking about "LLM-native" recommendation. What actually counts as LLM-native? And in a feed, where can it really land?
 
 ## Looking like an LLM is not being LLM-native
 
@@ -87,6 +93,8 @@ At the same price, one billion users each making 20 such decisions a day comes t
 An analogy: **the classic model cooks, the LLM orders.** How good each dish is has to be calculated precisely; which dishes come first tonight depends on your mood right now. That used to be the job of human operators. Now the LLM does it in real time, in every session. It's the real-time version of "LLMs replace the person."
 
 It also pairs naturally with bandits: the LLM supplies a prior for each group, and the bandit corrects the posterior quickly from real-time feedback.[^bandit] The LLM provides understanding; the bandit provides speed.
+
+This is also why I think it's more promising than what came before. The bottleneck of contextual bandits has always been how the context is represented. Context features used to be mostly hand-designed, which is exactly why adjusting to real-time interest so often felt forced or clumsy. LLM labeling fills that gap, and the work can be split: content labels are computed once per item; the user's current intent is summarized only when their interest shifts; and how the two match is left to the bandit to learn from real-time feedback. What the LLM produces is the bandit's context, not a real-time score for every candidate.
 
 Of course, this is still just an idea, and a few questions have to be answered.
 
