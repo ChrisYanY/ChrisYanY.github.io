@@ -1,0 +1,3 @@
+{{- /* Roman numeral for a series part number (1-10). */ -}}
+{{- $roman := slice "I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X" -}}
+{{- return index $roman (sub (int .) 1) -}}

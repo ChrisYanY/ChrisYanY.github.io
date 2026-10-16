@@ -72,6 +72,19 @@ img, svg { max-width: 100%; display: block; }
 .ai-note { font-family: var(--mono); font-size: 12.5px; line-height: 1.6; color: var(--muted); border: 1px dashed var(--line); border-radius: 2px; padding: 10px 14px; margin: 0 0 36px; }
 html[lang^="zh"] .ai-note { font-family: var(--zh-body); font-size: 14px; }
 
+/* series: a roman numeral before the title on cards, a tag in the crumbs, an index box on the post */
+.part { font-family: var(--serif); font-size: .6em; font-weight: 400; letter-spacing: .08em; color: var(--accent); vertical-align: .22em; margin-right: .55em; padding-right: .55em; border-right: 1px solid var(--line); }
+.series-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--muted); }
+.series { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 14px 0 12px; margin: 0 0 36px; }
+.series ol { list-style: none; margin: 10px 0 8px; padding: 0; }
+.series li { display: flex; gap: 14px; align-items: baseline; font-size: 15px; line-height: 1.5; padding: 3px 0; color: var(--muted); }
+.series li .num { font-family: var(--serif); font-size: 13px; letter-spacing: .08em; color: var(--faint); min-width: 2.2em; }
+.series li a { border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+.series li a:hover { color: var(--accent); border-color: currentColor; }
+.series li.current { color: var(--ink); }
+.series li.current .num { color: var(--accent); }
+.series .hint { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: .04em; }
+
 /* ---------- header ---------- */
 .site-header { border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 88%, transparent); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(6px); }
 .site-header .wrap { display: flex; align-items: center; gap: 24px; height: 64px; }

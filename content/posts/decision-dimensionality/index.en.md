@@ -6,6 +6,8 @@ label: "Thoughts"
 tags: ["LLM", "Recommender Systems", "Thoughts"]
 math: false
 mermaid: false
+series: "llm-recsys"
+part: 3
 translationKey: "decision-dimensionality"
 ai_assisted: true
 ai_note: "The views come from the author's own discussion with an AI; the write-up is AI-assisted."

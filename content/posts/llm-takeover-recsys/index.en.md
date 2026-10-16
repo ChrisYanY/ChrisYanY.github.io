@@ -6,6 +6,8 @@ label: "Thoughts"
 tags: ["LLM", "Recommender Systems", "Essay"]
 math: false
 mermaid: false
+series: "llm-recsys"
+part: 1
 translationKey: "llm-takeover-recsys"
 ai_assisted: true
 ai_note: "The views are my own; the write-up was AI-assisted."

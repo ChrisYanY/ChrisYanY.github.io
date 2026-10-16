@@ -6,6 +6,8 @@ label: "思考"
 tags: ["大模型", "推荐系统", "思考"]
 math: false
 mermaid: false
+series: "llm-recsys"
+part: 3
 translationKey: "decision-dimensionality"
 ai_assisted: true
 ai_note: "观点来自作者本人与 AI 的讨论，文字整理由 AI 辅助完成。"

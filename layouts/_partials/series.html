@@ -1,0 +1,12 @@
+{{- /* Series index shown at the top of a post that has `series` and `part` in its front matter. */ -}}
+{{- $cur := . }}
+{{- $posts := (where (where site.RegularPages "Section" "posts") "Params.series" .Params.series).ByParam "part" }}
+<nav class="series" aria-label="{{ i18n "seriesLabel" }}">
+  <span class="label">{{ i18n "seriesLabel" }} · {{ i18n (printf "series_%s" .Params.series) }}</span>
+  <ol>
+    {{- range $posts }}
+    <li{{ if eq .RelPermalink $cur.RelPermalink }} class="current"{{ end }}><span class="num">{{ partial "roman" .Params.part }}</span>{{ if eq .RelPermalink $cur.RelPermalink }}<span>{{ .Title }}</span>{{ else }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</li>
+    {{- end }}
+  </ol>
+  <span class="hint">{{ i18n "seriesHint" }}</span>
+</nav>

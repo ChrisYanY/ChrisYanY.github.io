@@ -4,6 +4,7 @@
     <div class="crumbs">
       <a href="{{ "" | relLangURL }}">← {{ i18n "backHome" }}</a>
       <span class="label">{{ .Params.label }}</span>
+      {{- with .Params.series }}<span class="series-tag">{{ i18n (printf "series_%s" .) }} · {{ partial "roman" $.Params.part }}</span>{{ end }}
       {{- if .Params.ai_assisted }}<span class="ai-tag">{{ i18n "aiTag" }}</span>{{ end }}
     </div>
     <h1>{{ .Title }}</h1>
@@ -18,10 +19,12 @@
 <div class="wrap post-layout">
   <article class="prose">
     {{- if .Params.ai_assisted }}<p class="ai-note">{{ or .Params.ai_note (i18n "aiNote") }}</p>{{ end }}
+    {{- if .Params.series }}{{ partial "series.html" . }}{{ end }}
     {{ .Content }}
     {{- with .Params.tags }}<div class="tags">{{ range . }}<span>{{ . }}</span>{{ end }}</div>{{ end }}
     <div class="post-foot">
       <a href="{{ "" | relLangURL }}#writing">← {{ i18n "allWriting" }}</a>
+      {{- with .Params.series }}{{ $next := add (int $.Params.part) 1 }}{{ range where (where site.RegularPages "Section" "posts") "Params.series" . }}{{ if eq (int .Params.part) $next }}<a href="{{ .RelPermalink }}">{{ i18n "seriesNext" }} {{ partial "roman" .Params.part }} →</a>{{ end }}{{ end }}{{ end }}
       {{- range .Translations }}<a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}">{{ i18n "readInOther" }} →</a>{{ end }}
     </div>
   </article>
