@@ -23,9 +23,13 @@ shoot() {  # shoot <html-file> <png-out>
 
 for svg in assets/covers/*.svg; do
   slug=$(basename "$svg" .svg)
+  # Covers are 800x500; scale to full height (x1.26, 1008px wide) so nothing is cropped, and
+  # continue the cover's 40px grid (50.4px at this scale) into the 96px side margins.
   cat >"$TMP/$slug.html" <<EOF
-<!doctype html><html><body style="margin:0;background:#e8e8e5">
-<img src="file://$PWD/$svg" style="display:block;width:1200px;height:630px;object-fit:cover">
+<!doctype html><html><body style="margin:0;width:1200px;height:630px;background-color:#e8e8e5;
+  background-image:linear-gradient(to right,transparent calc(100% - 1.26px),#dedfdb 0),linear-gradient(to bottom,transparent calc(100% - 1.26px),#dedfdb 0);
+  background-size:50.4px 50.4px;background-position:45.6px 0">
+<img src="file://$PWD/$svg" style="display:block;width:1008px;height:630px;margin:0 auto">
 </body></html>
 EOF
   shoot "$TMP/$slug.html" "$OUT/$slug.png"
@@ -44,7 +48,7 @@ h1 { font-size:84px; font-weight:400; margin:0 0 20px; letter-spacing:-1px; }
 p { font:22px/1.5 "DejaVu Sans Mono",Menlo,monospace; color:#5a6068; margin:0; max-width:560px; }
 .mark { width:420px; color:#16181b; }
 </style></head><body>
-<div><h1>Yan Yan</h1><p>Recommender systems · Generative retrieval · LLMs · Content ecosystems</p></div>
+<div><h1>Yan Yan</h1><p>Recommender systems · Generative retrieval<br>LLMs · Content ecosystems</p></div>
 <div class="mark">${accent}</div>
 </body></html>
 EOF
