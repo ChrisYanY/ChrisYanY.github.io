@@ -75,3 +75,6 @@ Desktop.ini
 
 *.log
 npm-debug.log*
+
+# Link-preview images, generated in CI by scripts/og.sh
+static/og/

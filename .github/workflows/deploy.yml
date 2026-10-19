@@ -81,6 +81,11 @@ jobs:
       id: pages
       uses: actions/configure-pages@v5
 
+      # Link-preview PNGs (static/og/) from the SVG covers; never blocks a deploy
+    - name: Generate link-preview images
+      continue-on-error: true
+      run: scripts/og.sh "$(command -v google-chrome || command -v chromium)"
+
     - name: Build with Hugo
       env:
         HUGO_ENVIRONMENT: production
