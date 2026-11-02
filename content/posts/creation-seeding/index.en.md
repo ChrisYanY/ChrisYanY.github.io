@@ -1,7 +1,7 @@
 ---
 title: "Seeding Creation"
 date: 2026-11-01
-summary: "Getting users to create is the same kind of growth problem as seeding and closing a sale in commerce. Almost everything commerce has learned carries over: seeding makes people want to create, closing helps them finish, and when creators start seeding other creators, the ecosystem turns on its own."
+summary: "Getting users to create is the same kind of growth problem as seeding and closing a sale in commerce. Almost everything commerce has learned carries over: seeding makes people want to create, closing helps them finish, distribution after posting is a form of social recognition and the strongest incentive of all, and when creators start seeding other creators, the ecosystem turns on its own."
 label: "Thoughts"
 tags: ["Creator Ecosystem", "Creation", "Recommender Systems", "Growth", "Thoughts"]
 math: false
@@ -129,6 +129,32 @@ This mirrors commerce too: show categories while someone is browsing, specific m
 
 **How do you know the deal closed?** Closing is measured by draft completion rate and time from start to publish. Completion rate matters more: most drafts don't fail because they are slow, they fail because they are abandoned.
 
+## After creating: distribution is social recognition
+
+Everything above, seeding and closing, happens before someone creates, and that is also where most of our current work sits. But that in no way means what happens afterwards matters less. Quite the opposite: from the data I have seen, **distribution after posting is the more important incentive for creation.** What really decides whether someone will make another one, and even whether seeding works at all, is often whether anyone sees the piece once it is out.
+
+So I think distribution after creation is the strongest incentive seeding has. At its core, it is a form of social recognition.
+
+If I had to compare it to commerce, it resembles two things. One is the recognition a buyer gets after the purchase: you buy a new jacket, wear it out, and friends tell you it looks great. That compliment is what makes the purchase feel worth it, and what makes you want to buy again and recommend it to others. The other is reviews and reputation: buyers' reviews slowly add up to a seller's reputation, which in turn shapes whether the next group of people buys.
+
+In creation, that compliment is the views, likes, comments and follows that distribution brings.
+
+| | Commerce | Creation |
+|---|---|---|
+| Recognition after the action | Wearing the jacket out and getting compliments | The piece gets seen; people like, comment, follow |
+| Reviews and reputation | Buyer reviews, seller reputation | Comments, follows, the reputation a creator gradually builds |
+| What it leads to | The purchase feels worth it; repeat purchases and referrals | The creation feels worth it; the next creation |
+
+This recognition doesn't only act after creating; it also reaches back to before. Many people are stuck at "tempted but haven't posted" not because they can't make it, but because they're unsure: "Will anyone even watch?" When someone gets real feedback on their very first post, they're braver the next time; and when the people around them see that "someone like me posted, and people watched", that itself becomes another act of seeding.
+
+Here is one way it differs sharply from commerce. A seller can't control whether anyone compliments your jacket; but whether anyone sees your creation is largely decided by the platform's distribution. **In creation, the switch for social recognition is in the recommender's hands.** That is the platform's biggest lever, and also a responsibility.
+
+So for a recommender, cold-start distribution of new creators' work is not only a content distribution problem; it is the last link in the whole seeding chain. A few things I think matter most:
+
+- **Find the right first audience.** A hundred views from people genuinely interested in the topic produce very different feedback from a hundred views from people who happened to scroll past. The quality of recognition matters more than its quantity.
+- **Make feedback arrive fast.** The first few hours after posting are when a newcomer cares most, and when they're most likely to give up.
+- **Keep recognition real.** Artificially inflating newcomers' numbers looks good in the short term, but it degrades the experience for viewers, and creators eventually notice the recognition is hollow. What distribution can do is make sure good work isn't buried, not manufacture applause for every piece.
+
 ## Self-sustaining: creators seeding creators
 
 Back to the last layer of the funnel: Advocate. In commerce, advocacy is repeat purchase and word of mouth. In creation, it is someone who keeps creating, and whose work gets more people to create.
@@ -137,12 +163,7 @@ In my post on [the creator flywheel](/posts/creator-flywheel/), I drew a loop: c
 
 Whether an ecosystem can turn on its own depends largely on this path. If every new creator has to be inspired by the platform, the ecosystem will always need the platform to push it. Only when a creator's work reliably reaches people who are similar to them and on the fence, and gets them to start too, does the ecosystem begin to sustain itself. So distributing creators' work should also be treated as seeding: show it not only to people who will watch it, but to people who will create because of it.
 
-The other half of self-sustaining is the creation equivalent of a repeat purchase: when a newcomer posts for the first time, do they quickly get likes, comments and follows? A good first experience is what leads to a second.
-
-| | Commerce | Creation |
-|---|---|---|
-| Repeat purchase | Satisfied with the first purchase, so buys again | Gets feedback on the first post, so posts again |
-| Word of mouth | Buyers recommend it to friends | Their creation gets similar people to create too |
+The social recognition in the previous section makes a creator want to keep going; the loop in this one lets their work spark more people. Together, they are commerce's repeat purchase plus word of mouth.
 
 ## Where it differs from commerce
 
