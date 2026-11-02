@@ -323,6 +323,50 @@ path.feed {{ animation: flow10 2.6s linear infinite; }}
         css += f"rect.sel{i} {{ opacity: 0; animation: sel{i} {T}s ease-in-out infinite; }}\n@keyframes sel{i} {{ {' '.join(steps)} }}\n"
     return svg("".join(out), css)
 
+def seeding():
+    # a five-stage funnel (aware -> appeal -> ask -> act -> advocate): viewers thin out stage by stage;
+    # the accent seed walks through, sprouts at the end, and the dashed loop carries it back to the start
+    out = []; r = random.Random(11)
+    gx = [130, 250, 370, 490, 610]
+    gh = [330, 260, 190, 130, 80]
+    cy = 260
+    top = " ".join(f"{x},{cy - h / 2:.0f}" for x, h in zip(gx, gh))
+    bot = " ".join(f"{x},{cy + h / 2:.0f}" for x, h in zip(gx, gh))
+    out.append(f'<polyline points="{top}" fill="none" stroke="{MUTED}" stroke-width="1.2"/>')
+    out.append(f'<polyline points="{bot}" fill="none" stroke="{MUTED}" stroke-width="1.2"/>')
+    for x, h in zip(gx, gh):
+        out.append(f'<line x1="{x}" y1="{cy - h / 2:.0f}" x2="{x}" y2="{cy + h / 2:.0f}" stroke="{INK}" stroke-width="1.4"/>')
+    for i, n in enumerate([60, 34, 18, 8]):  # fewer people make it past each gate
+        x0, x1 = gx[i] + 10, gx[i + 1] - 10
+        for _ in range(n):
+            x = r.uniform(x0, x1); t = (x - gx[i]) / (gx[i + 1] - gx[i])
+            half = (gh[i] + (gh[i + 1] - gh[i]) * t) / 2 - 8
+            out.append(f'<circle cx="{x:.1f}" cy="{r.uniform(cy - half, cy + half):.1f}" r="{r.choice([1.6, 2, 2.4])}" fill="{r.choice([FAINT, MUTED])}" opacity="{r.uniform(.4, .85):.2f}"/>')
+    # sprout at the end of the funnel
+    sx, sy = 690, cy + 20
+    out.append(f'<path d="M{sx} {sy} L{sx} {sy - 46}" stroke="{INK}" stroke-width="1.6"/>')
+    out.append(f'<path d="M{sx} {sy - 22} C {sx - 26} {sy - 30}, {sx - 30} {sy - 52}, {sx - 6} {sy - 58} C {sx - 4} {sy - 40}, {sx - 8} {sy - 30}, {sx} {sy - 22} Z" fill="none" stroke="{INK}" stroke-width="1.4"/>')
+    out.append(f'<path d="M{sx} {sy - 34} C {sx + 22} {sy - 40}, {sx + 30} {sy - 60}, {sx + 10} {sy - 70} C {sx + 4} {sy - 54}, {sx + 6} {sy - 44}, {sx} {sy - 34} Z" fill="none" stroke="{INK}" stroke-width="1.4"/>')
+    out.append(f'<line x1="{sx - 34}" y1="{sy}" x2="{sx + 34}" y2="{sy}" stroke="{MUTED}" stroke-width="1.2"/>')
+    # the loop back: creators seeding creators
+    out.append(f'<path class="loop" d="M{sx} {sy - 78} C {sx - 40} 20, 200 10, {gx[0] + 20} {cy - gh[0] / 2 + 14}" fill="none" stroke="{ACC}" stroke-width="1.4" stroke-dasharray="4 6" opacity=".8"/>')
+    # accent seed: pauses at each gate, then reaches the sprout
+    stops = [(gx[0] - 30, cy)] + [(x + 4, cy + (6 if i % 2 else -6)) for i, x in enumerate(gx)] + [(sx, sy - 8)]
+    T, n = 14, len(stops) - 1
+    kf = []
+    for j, (x, y) in enumerate(stops):
+        p = j / n * 88
+        kf.append(f"{p:.1f}% {{ transform: translate({x}px, {y}px); opacity: 1; }}")
+    kf.append(f"94% {{ transform: translate({sx}px, {sy - 8}px); opacity: 0; }}")
+    kf.append(f"100% {{ transform: translate({stops[0][0]}px, {stops[0][1]}px); opacity: 0; }}")
+    out.append(f'<g class="seed"><circle r="6" fill="{ACC}"/><circle r="13" fill="none" stroke="{ACC}" stroke-width="1" opacity=".4"/></g>')
+    css = f"""
+g.seed {{ animation: walk {T}s ease-in-out infinite; transform: translate({stops[0][0]}px, {stops[0][1]}px); }}
+@keyframes walk {{ {' '.join(kf)} }}
+path.loop {{ animation: flow10 2.4s linear infinite; }}
+"""
+    return svg("".join(out), css)
+
 def accent():
     r = random.Random(3); out = []
     centers = [(120,110,34),(250,70,26),(230,200,30),(330,150,22)]
@@ -335,6 +379,6 @@ def accent():
     return f'<svg class="intro-accent" viewBox="0 0 420 300" aria-hidden="true">{"".join(out)}</svg>'
 
 OUT.mkdir(parents=True, exist_ok=True)
-for name, fn in [("diffusion-models-for-recsys", diffusion), ("llm-recsys-landscape", landscape), ("opro-and-gr2", opro), ("may-2026-paper-notes", towers), ("creator-flywheel", flywheel), ("llm-takeover-recsys", orchestra), ("llm-runway", runway), ("decision-dimensionality", reduce)]:
+for name, fn in [("diffusion-models-for-recsys", diffusion), ("llm-recsys-landscape", landscape), ("opro-and-gr2", opro), ("may-2026-paper-notes", towers), ("creator-flywheel", flywheel), ("llm-takeover-recsys", orchestra), ("llm-runway", runway), ("decision-dimensionality", reduce), ("creation-seeding", seeding)]:
     (OUT/f"{name}.svg").write_text(fn()); print("wrote", name)
 pathlib.Path(sys.argv[2]).write_text(accent()); print("wrote accent")
