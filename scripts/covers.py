@@ -349,20 +349,31 @@ def seeding():
     out.append(f'<path d="M{sx} {sy - 34} C {sx + 22} {sy - 40}, {sx + 30} {sy - 60}, {sx + 10} {sy - 70} C {sx + 4} {sy - 54}, {sx + 6} {sy - 44}, {sx} {sy - 34} Z" fill="none" stroke="{INK}" stroke-width="1.4"/>')
     out.append(f'<line x1="{sx - 34}" y1="{sy}" x2="{sx + 34}" y2="{sy}" stroke="{MUTED}" stroke-width="1.2"/>')
     # the loop back: creators seeding creators
-    out.append(f'<path class="loop" d="M{sx} {sy - 78} C {sx - 40} 20, 200 10, {gx[0] + 20} {cy - gh[0] / 2 + 14}" fill="none" stroke="{ACC}" stroke-width="1.4" stroke-dasharray="4 6" opacity=".8"/>')
-    # accent seed: pauses at each gate, then reaches the sprout
-    stops = [(gx[0] - 30, cy)] + [(x + 4, cy + (6 if i % 2 else -6)) for i, x in enumerate(gx)] + [(sx, sy - 8)]
-    T, n = 14, len(stops) - 1
-    kf = []
-    for j, (x, y) in enumerate(stops):
-        p = j / n * 88
-        kf.append(f"{p:.1f}% {{ transform: translate({x}px, {y}px); opacity: 1; }}")
-    kf.append(f"94% {{ transform: translate({sx}px, {sy - 8}px); opacity: 0; }}")
-    kf.append(f"100% {{ transform: translate({stops[0][0]}px, {stops[0][1]}px); opacity: 0; }}")
+    loop = [(sx, sy - 78), (sx - 40, 20), (200, 10), (gx[0] + 20, cy - gh[0] / 2 + 14)]
+    out.append(f'<path class="loop" d="M{loop[0][0]} {loop[0][1]} C {loop[1][0]} {loop[1][1]}, {loop[2][0]} {loop[2][1]}, {loop[3][0]} {loop[3][1]}" fill="none" stroke="{ACC}" stroke-width="1.4" stroke-dasharray="4 6" opacity=".8"/>')
+    # accent seed: starts in the first stage, pauses at each gate, sprouts, then rides the loop back
+    def bez(t):
+        (x0, y0), (x1, y1), (x2, y2), (x3, y3) = loop
+        u = 1 - t
+        return (u**3 * x0 + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t**3 * x3,
+                u**3 * y0 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t**3 * y3)
+    home = (gx[0] + 50, cy - 30)
+    pts = [(0, home), (4, home)]                        # (percent, (x, y)); repeated points = pauses
+    gates = [(x + 4, cy + (6 if i % 2 else -6)) for i, x in enumerate(gx[1:])] + [(sx, sy - 8)]
+    t = 4
+    for g in gates:
+        t += 7; pts.append((t, g)); t += 3; pts.append((t, g))
+    t += 3; pts.append((t, loop[0]))
+    for k in range(1, 21):                              # ride the dashed curve back to the start
+        pts.append((t + k * 1.6, bez(k / 20)))
+    t += 32; pts.append((t, loop[3]))
+    pts.append((100, home))
+    T = 18
+    kf = " ".join(f"{p:.1f}% {{ transform: translate({x:.1f}px, {y:.1f}px); }}" for p, (x, y) in pts)
     out.append(f'<g class="seed"><circle r="6" fill="{ACC}"/><circle r="13" fill="none" stroke="{ACC}" stroke-width="1" opacity=".4"/></g>')
     css = f"""
-g.seed {{ animation: walk {T}s ease-in-out infinite; transform: translate({stops[0][0]}px, {stops[0][1]}px); }}
-@keyframes walk {{ {' '.join(kf)} }}
+g.seed {{ animation: walk {T}s linear infinite; transform: translate({home[0]}px, {home[1]}px); }}
+@keyframes walk {{ {kf} }}
 path.loop {{ animation: flow10 2.4s linear infinite; }}
 """
     return svg("".join(out), css)
