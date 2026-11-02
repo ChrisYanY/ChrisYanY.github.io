@@ -259,7 +259,7 @@ def runway():
     for x in (vx0, vx1):
         out.append(f'<line x1="{x}" y1="{ry - 6}" x2="{x}" y2="{ry + 6}" stroke="{ACC}" stroke-width="1.4"/>')
     # trail of the far-sighted walker
-    tx = [x for x in xs if 80 <= x <= 590]
+    tx = [x for x in xs if 80 <= x <= 740]
     out.append(f'<path class="trail" d="M' + " L".join(f"{x} {f(x) - 9:.1f}" for x in tx) + f'" fill="none" stroke="{ACC}" stroke-width="1.2" stroke-dasharray="3 8" opacity=".55"/>')
     # greedy walker: parked on the near peak, looking left and right
     gy = f(235) - 9
@@ -267,11 +267,16 @@ def runway():
     for s in (-1, 1):
         out.append(f'<path class="look" d="M{235 + s*16} {gy - 4:.1f} l{s*7} 4 l{-s*7} 4" fill="none" stroke="{FAINT}" stroke-width="1.2" '
                    f'style="animation-delay:{0 if s < 0 else -3}s"/>')
-    # far-sighted walker: keyframes sampled along the curve, a long pause at the top
-    pts = [(x, f(x) - 9) for x in tx[::3]] + [(590, f(590) - 9)]
-    n = len(pts)
-    kf = "".join(f"{i / (n - 1) * 78:.2f}% {{ transform: translate({x}px, {y:.1f}px); }}\n" for i, (x, y) in enumerate(pts))
-    kf += f"100% {{ transform: translate(590px, {f(590) - 9:.1f}px); }}\n"
+    # far-sighted walker: keyframes sampled along the whole curve; it pauses at the far peak, walks on to
+    # the end, fades out, and fades back in at the start so the loop never jumps
+    up = [(x, f(x) - 9) for x in tx if x <= 590][::3] + [(590, f(590) - 9)]
+    down = [(x, f(x) - 9) for x in tx if x > 590][::3] + [(tx[-1], f(tx[-1]) - 9)]
+    frames = [(i / (len(up) - 1) * 58, p, 1) for i, p in enumerate(up)]
+    frames.append((70, up[-1], 1))                                   # pause on the far peak
+    frames += [(70 + (i + 1) / len(down) * 16, p, 1) for i, p in enumerate(down)]
+    frames += [(90, down[-1], 0), (95, up[0], 0), (99, up[0], 1)]
+    kf = "".join(f"{q:.2f}% {{ transform: translate({x}px, {y:.1f}px); opacity: {o}; }}\n" for q, (x, y), o in frames)
+    kf += f"100% {{ transform: translate({up[0][0]}px, {up[0][1]:.1f}px); opacity: 1; }}\n"
     out.append(f'<circle class="walker" cx="0" cy="0" r="6" fill="{ACC}"/>')
     css = f"""
 circle.walker {{ animation: climb 18s linear infinite; }}
