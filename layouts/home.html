@@ -41,7 +41,7 @@
           {{- range $i, $a := .Params.authors }}{{ if or (eq $a "Y Yan") (eq $a "Yan Yan") }}<b>{{ $a }}</b>{{ else }}{{ $a }}{{ end }}{{ if lt (add $i 1) $n }}, {{ end }}{{ end -}}
         </span>
       </span>
-      <span class="venue">{{ .Params.venue_short }}{{ with .Resources.GetMatch "*.pdf" }}<a href="{{ .RelPermalink }}" target="_blank" rel="noopener">PDF</a>{{ end }}</span>
+      <span class="venue">{{ .Params.venue_short }}{{ with .Resources.GetMatch "*.pdf" }}<a href="{{ .RelPermalink }}" target="_blank" rel="noopener">PDF</a>{{ else }}{{ with .Params.pdf_url }}<a href="{{ . }}" target="_blank" rel="noopener">PDF</a>{{ end }}{{ end }}</span>
     </li>
     {{- end }}
   </ul>
