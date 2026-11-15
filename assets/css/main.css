@@ -132,6 +132,13 @@ html[lang^="zh"] .card h3 { font-family: "Songti SC", "Noto Serif SC", var(--ser
 .card p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.6; }
 
 /* ---------- publications ---------- */
+.news { list-style: none; margin: 0; padding: 0; }
+.news li { display: grid; grid-template-columns: 64px 1fr auto; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.news .when { font-family: var(--mono); font-size: 13px; color: var(--faint); white-space: nowrap; }
+.news .what { font-size: 17px; line-height: 1.45; }
+.news .what b { font-weight: 600; }
+.news .more a { font-family: var(--mono); font-size: 11.5px; letter-spacing: .04em; color: var(--muted); border-bottom: 1px solid var(--line); white-space: nowrap; }
+.news .more a:hover { color: var(--accent); border-color: var(--accent); }
 .pubs { list-style: none; margin: 0; padding: 0; }
 .pubs li { display: grid; grid-template-columns: 64px 1fr auto; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
 .pubs .year { font-family: var(--mono); font-size: 13px; color: var(--faint); }
@@ -224,6 +231,7 @@ pre.mermaid:not([data-processed]) { color: transparent; min-height: 80px; }
   .wordmark .slash, .nav .hide-sm { display: none; }
   .nav { gap: 14px; }
   .pubs li { grid-template-columns: 1fr; gap: 6px; }
+  .news li { grid-template-columns: 1fr; gap: 6px; }
   .post-head { padding: 44px 0 28px; }
 }
 @media (prefers-reduced-motion: reduce) {

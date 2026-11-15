@@ -13,6 +13,22 @@
   </div>
 </section>
 
+{{- with site.Data.news }}
+<section id="news" class="section wrap">
+  <div class="section-head"><h2>{{ i18n "news" }}</h2><span class="count">{{ printf "%02d" (len .) }}</span></div>
+  <ul class="news">
+    {{- range . }}
+    {{- $n := . }}{{- $d := time.AsTime .date }}
+    <li>
+      <span class="when">{{ if eq site.Language.Lang "zh" }}{{ $d.Format "2006.01" }}{{ else }}{{ $d.Format "Jan 2006" }}{{ end }}</span>
+      <span class="what">{{ (index . site.Language.Lang | default .en) | safeHTML }}</span>
+      <span class="more">{{ with .link }}<a href="{{ . }}" target="_blank" rel="noopener">{{ $n.link_label | default "Link" }} ↗</a>{{ end }}</span>
+    </li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}
+
 {{- with $posts }}
 <section id="writing" class="section wrap">
   <div class="section-head"><h2>{{ i18n "writing" }}</h2><span class="count">{{ printf "%02d" (len $posts) }}</span></div>
